@@ -5,7 +5,7 @@ defmodule Slack.FakeSlack.Router do
   plug(:match)
   plug(:dispatch)
 
-  get "/api/rtm.start" do
+  get "/api/rtm.connect" do
     conn = fetch_query_params(conn)
 
     pid = Application.get_env(:slack, :test_pid)
@@ -16,12 +16,7 @@ defmodule Slack.FakeSlack.Router do
         "ok": true,
         "url": "ws://localhost:51345/ws",
         "self": { "id": "U0123abcd", "name": "bot" },
-        "team": { "id": "T4567abcd", "name": "Example Team" },
-        "bots": [{ "id": "U0123abcd", "name": "bot" }],
-        "channels": [],
-        "groups": [],
-        "users": [],
-        "ims": []
+        "team": { "id": "T4567abcd", "name": "Example Team", "domain": "Example Domain" }
       }
     )
 
